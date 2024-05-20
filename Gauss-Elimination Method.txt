@@ -1,0 +1,23 @@
+//Gauss-Elimination Method//
+clc;clear;
+a=[3 -0.1 -0.3;0.1 7 -0.3;0.3 -0.2 10]
+b=[7.85;-19.3;71.4]
+n=length(b)
+disp([a b])
+//Tringularization//
+for i=1:2
+    for j=i+1:3
+        mf=a(j,i)/a(i,i)
+        a(j,:)=a(j,:)-mf*a(i,:)
+        b(j)=b(j)-mf*b(i)
+    end
+    disp([a b])
+    //Back substitution//
+    x=zeros(1,3)
+    disp("solutons are:")
+    for i=3:-1:1
+        ax=sum(a(i,1:3).*x)
+        x(i)=(b(i)-ax)/a(i,i)
+        disp("x("+string(i)+")="string(x(i)))
+end
+disp(x)
